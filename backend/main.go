@@ -30,8 +30,9 @@ func main() {
 	})
 
 	routers.Initialize(app)
-
-	app.Static("/", "./public")
+	app.Static("*", "./public/index.html")
+	app.Static("/logo.svg", "./public/logo.svg")
+	app.Static("/assets", "./public/assets")
 
 	log.Fatal(app.Listen(fmt.Sprintf(":%d", serverConf.Port)))
 }

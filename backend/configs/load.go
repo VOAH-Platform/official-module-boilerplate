@@ -27,6 +27,7 @@ func getEnvInt(key string, defaultValue int) int {
 func LoadEnv() {
 	Env = &MainEnv{
 		Server: serverEnv{
+			HostURL:    getEnvStr("SERVER_HOST_URL", "http://localhost:3000"),
 			Port:       getEnvInt("SERVER_PORT", 3000),
 			CSRFOrigin: getEnvStr("SERVER_CSRF_ORIGIN", "*"),
 			DataDir:    getEnvStr("SERVER_DATA_DIR", "./data"),
