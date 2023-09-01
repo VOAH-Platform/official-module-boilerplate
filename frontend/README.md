@@ -1,27 +1,14 @@
-# React + TypeScript + Vite
+# official-module-boilerplate frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## CLI 사용법
 
-Currently, two official plugins are available:
+- 패키지 매니저로 pnpm을 사용합니다.
+- `pnpm install`로 의존성을 설치합니다.
+- `pnpm dev`로 개발 서버를 실행합니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 프로젝트 구조
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- `public/` : 정적 파일들이 위치합니다.
+- `src/assets` : 다양한 코드 외의 리소스들이 위치합니다.
+- `src/pages` : 페이지 컴포넌트들이 위치합니다.
+- `src/components` : 페이지 컴포넌트들이 사용하는 컴포넌트들이 위치합니다.

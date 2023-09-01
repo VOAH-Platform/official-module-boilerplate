@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { themeAtom } from '@/atom';
+import { THEME_TOKEN } from '@/constant';
+import { IndexPage } from '@/pages/index';
+import { darkTheme, globalStyles } from '@/stitches.config';
+
+import { NotFoundPage } from './pages/404';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme] = useAtom(themeAtom);
 
+  const setDarkTheme = () => {
+    document.querySelector('html')!.style.backgroundColor = '#20262b';
+    if (!document.body.classList.contains(darkTheme.className))
+      document.body.classList.add(darkTheme.className);
+  };
+
+  const setLightTheme = () => {
+    document.querySelector('html')!.style.backgroundColor = '#ffffff';
+    if (document.body.classList.contains(darkTheme.className))
+      document.body.classList.remove(darkTheme.className);
+  };
+
+  const match = window.matchMedia('(prefers-color-scheme: dark)');
+
+  useEffect(() => {
+    if (theme == THEME_TOKEN.SYSTEM) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setDarkTheme();
+      } else {
+        setLightTheme();
+      }
+      match.addEventListener('change', (e) => {
+        if (e.matches) {
+          setDarkTheme();
+        } else {
+          setLightTheme();
+        }
+      });
+    } else {
+      match.removeEventListener('change', () => {});
+    }
+    if (theme == THEME_TOKEN.LIGHT) {
+      setLightTheme();
+    }
+    if (theme == THEME_TOKEN.DARK) {
+      setDarkTheme();
+    }
+  }, [theme]);
+
+  globalStyles();
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<IndexPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
