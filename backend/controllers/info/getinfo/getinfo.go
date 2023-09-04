@@ -14,5 +14,6 @@ func GetInfoCtrl(c *fiber.Ctx) error {
 		"name":        configs.ModuleName,
 		"description": configs.ModuleDescription,
 		"deps":        configs.ModuleDeps,
+		"permissions": []string{},
 	})
 }
