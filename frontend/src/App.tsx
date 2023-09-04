@@ -27,7 +27,7 @@ function App() {
   const match = window.matchMedia('(prefers-color-scheme: dark)');
 
   useEffect(() => {
-    if (theme == THEME_TOKEN.SYSTEM) {
+    if (theme.token == THEME_TOKEN.SYSTEM) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         setDarkTheme();
       } else {
@@ -43,10 +43,10 @@ function App() {
     } else {
       match.removeEventListener('change', () => {});
     }
-    if (theme == THEME_TOKEN.LIGHT) {
+    if (theme.token == THEME_TOKEN.LIGHT) {
       setLightTheme();
     }
-    if (theme == THEME_TOKEN.DARK) {
+    if (theme.token == THEME_TOKEN.DARK) {
       setDarkTheme();
     }
   }, [theme]);
