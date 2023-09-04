@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"implude.kr/VOAH-Template-Project/configs"
 	"implude.kr/VOAH-Template-Project/routers"
 	"implude.kr/VOAH-Template-Project/utils/directory"
@@ -22,12 +23,11 @@ func main() {
 	app := fiber.New()
 
 	// CORS
-	app.Use(func(c *fiber.Ctx) error {
-		c.Set("Access-Control-Allow-Origin", serverConf.CSRFOrigin)
-		c.Set("Access-Control-Allow-Methods", "*")
-		c.Set("Access-Control-Allow-Headers", "*")
-		return c.Next()
-	})
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: serverConf.CSRFOrigin,
+		AllowHeaders: "*",
+		AllowMethods: "*",
+	}))
 
 	routers.Initialize(app)
 
