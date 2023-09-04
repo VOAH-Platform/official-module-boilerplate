@@ -12,13 +12,21 @@ export function IndexPage() {
   return (
     <IndexWrapper>
       VOAH TEMPLATE
-      <ExampleButton onClick={() => setTheme(THEME_TOKEN.LIGHT)}>
+      <ExampleButton
+        onClick={() => setTheme({ token: THEME_TOKEN.LIGHT, isDark: false })}>
         LIGHT
       </ExampleButton>
-      <ExampleButton onClick={() => setTheme(THEME_TOKEN.DARK)}>
+      <ExampleButton
+        onClick={() => setTheme({ token: THEME_TOKEN.DARK, isDark: true })}>
         DARK
       </ExampleButton>
-      <ExampleButton onClick={() => setTheme(THEME_TOKEN.SYSTEM)}>
+      <ExampleButton
+        onClick={() =>
+          setTheme({
+            token: THEME_TOKEN.SYSTEM,
+            isDark: window.matchMedia('(prefers-color-scheme: dark)').matches,
+          })
+        }>
         SYSTEM
       </ExampleButton>
     </IndexWrapper>
