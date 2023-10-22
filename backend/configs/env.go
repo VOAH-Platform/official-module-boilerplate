@@ -3,10 +3,13 @@ package configs
 var Env *MainEnv
 
 type serverEnv struct {
-	HostURL    string
-	Port       int
-	CSRFOrigin string
-	DataDir    string
+	HostURL          string
+	InternalHost     string
+	CoreInternalHost string
+	Port             int
+	CSRFOrigin       string
+	DataDir          string
+	CoreAPIKey       string
 }
 
 type MainEnv struct {

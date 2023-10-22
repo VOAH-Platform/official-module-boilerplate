@@ -7,7 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"implude.kr/VOAH-Template-Project/configs"
 	"implude.kr/VOAH-Template-Project/routers"
-	"implude.kr/VOAH-Template-Project/utils/directory"
 	"implude.kr/VOAH-Template-Project/utils/logger"
 )
 
@@ -15,7 +14,6 @@ func main() {
 	configs.LoadEnv()     // Load envs
 	configs.LoadSetting() // Load settings
 	logger.InitLogger()   // Intitialize logger
-	directory.IniteDirectory()
 
 	serverConf := configs.Env.Server
 	log := logger.Logger
